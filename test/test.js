@@ -1,5 +1,3 @@
-const axios = require('axios')
-
 describe("NFTMarket", function() {
   it("Should interact with the token contract", async function() {
 
@@ -67,12 +65,21 @@ describe("NFTMarket", function() {
 });
 
 describe("DutchAuction", function() {
+  let dutchAuction;
+  let cpt;
+  let owner; // The owner of the DutchAuction
+
   beforeEach(async function() {
-    
+    const [deployer, user1, user2, user3] = await ethers.getSigners();
+    owner = deployer;
+
     const DutchAuction = await ethers.getContractFactory("DutchAuction");
-    const dutchAuction = await DutchAuction.deploy();
-    await dutchAuction.deployed()
-    const dutchAuctionAddress = dutchAuction.address; 
+    dutchAuction = await DutchAuction.deploy();
+    await dutchAuction.deployed();
+
+    const CPT = await ethers.getContractFactory("CodePanther");
+    cpt = await CPT.deploy(dutchAuction.address);
+    await cpt.deployed();
   });
 
   it("Every bid emits an event with transaction details", async function() {
@@ -80,17 +87,44 @@ describe("DutchAuction", function() {
   });
 
   it("Auction should close when all tokens are reserved", async function() {
-    // New users cannot bid after all tokens are reserved
+    const auctionDuration = 600; // The duration of the auction in seconds (10 minutes)
+    const startingPrice = 100; // Initial price
+    const reservePrice = 10; // Reserve price
+    const initialSupply = 1000; // Initial supply of tokens
 
+    // Start the auction with the specified parameters
+    await dutchAuction.startAuction(startingPrice, reservePrice, auctionDuration, initialSupply);
+
+    // user1 buys all
+    await dutchAuction.connect(user1).placeBid({totalBidAmount: 10*1000});
+
+    // Check if the auction is closed
+    const isAuctionClosed = await dutchAuction.isAuctionClosed();
+    expect(isAuctionClosed).to.be.true;
+
+    // Check if user2 is barred from buying more
+    const user2Bid = dutchAuction.connect(user2).placeBid({totalBidAmount: 10});
+    await expect(user2Bid).to.be.revertedWith("Auction is closed");
   });
 
-  it("Auction should close when reservation price === current price", async function() {
-
+  it("Auction should close when time is up (reservation price === current price)", async function() {
+    const auctionDuration = 600; // The duration of the auction in seconds (10 minutes)
+    const startingPrice = 100; // Initial price
+    const reservePrice = 10; // Reserve price
+    const initialSupply = 1000; // Initial supply of tokens
+  
+    // Start the auction with the specified parameters
+    await dutchAuction.startAuction(startingPrice, reservePrice, auctionDuration, initialSupply);
+  
+    // Move time forward by the duration of the auction
+    await network.provider.send("evm_increaseTime", [auctionDuration]);
+    await network.provider.send("evm_mine");
+  
+    // Check if the auction is closed based on the elapsed time
+    const isAuctionClosed = await dutchAuction.isAuctionClosed();
+    expect(isAuctionClosed).to.be.true;
   });
-
-  it("Auction should close when time is up", async function() {
-
-  });
+  
 
   it("Successful bidders should receive correct no. of tokens", async function() {
 
@@ -104,7 +138,8 @@ describe("DutchAuction", function() {
 
   });
 
+});
+
   // Reentry attack
 
   // Submarine case
-});
