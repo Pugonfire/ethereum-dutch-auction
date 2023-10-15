@@ -1,10 +1,367 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "/Users/admin/src/ethereum-nft-marketplace/contracts/NFT.sol": {
-      "lastModificationDate": 1696920178095,
-      "contentHash": "1c80f5ed0ebb49b150fe6bba6c156b40",
-      "sourceName": "contracts/NFT.sol",
+    "C:\\Users\\Acer\\Documents\\CZ4153 Blockchain Technology\\ethereum-dutch-auction\\contracts\\CodePanther.sol": {
+      "lastModificationDate": 1697384183841,
+      "contentHash": "3577dc8c0d8ba5ceccec383966784c68",
+      "sourceName": "contracts/CodePanther.sol",
+      "solcConfig": {
+        "version": "0.8.3",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol",
+        "@openzeppelin/contracts/access/Ownable.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.3"
+      ],
+      "artifacts": [
+        "CodePanther"
+      ]
+    },
+    "C:\\Users\\Acer\\Documents\\CZ4153 Blockchain Technology\\ethereum-dutch-auction\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\ERC20.sol": {
+      "lastModificationDate": 1697006064261,
+      "contentHash": "715cc034a225c8fc445e2f4299111d75",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+      "solcConfig": {
+        "version": "0.8.3",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./IERC20.sol",
+        "./extensions/IERC20Metadata.sol",
+        "../../utils/Context.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ERC20"
+      ]
+    },
+    "C:\\Users\\Acer\\Documents\\CZ4153 Blockchain Technology\\ethereum-dutch-auction\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\extensions\\ERC20Burnable.sol": {
+      "lastModificationDate": 1697006064303,
+      "contentHash": "279d6a0c2fd093b667febc2c4c2e6945",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol",
+      "solcConfig": {
+        "version": "0.8.3",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../ERC20.sol",
+        "../../../utils/Context.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ERC20Burnable"
+      ]
+    },
+    "C:\\Users\\Acer\\Documents\\CZ4153 Blockchain Technology\\ethereum-dutch-auction\\node_modules\\@openzeppelin\\contracts\\access\\Ownable.sol": {
+      "lastModificationDate": 1697006066505,
+      "contentHash": "17d9f40220b0ab370db2c77e7c92c4ef",
+      "sourceName": "@openzeppelin/contracts/access/Ownable.sol",
+      "solcConfig": {
+        "version": "0.8.3",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../utils/Context.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Ownable"
+      ]
+    },
+    "C:\\Users\\Acer\\Documents\\CZ4153 Blockchain Technology\\ethereum-dutch-auction\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\IERC20.sol": {
+      "lastModificationDate": 1697006066064,
+      "contentHash": "c7492a9ab60ba083d345f893d5e0f33c",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+      "solcConfig": {
+        "version": "0.8.3",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC20"
+      ]
+    },
+    "C:\\Users\\Acer\\Documents\\CZ4153 Blockchain Technology\\ethereum-dutch-auction\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\extensions\\IERC20Metadata.sol": {
+      "lastModificationDate": 1697006066111,
+      "contentHash": "aa1be06992a99bb7393b26a6af3c4dfb",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol",
+      "solcConfig": {
+        "version": "0.8.3",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../IERC20.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC20Metadata"
+      ]
+    },
+    "C:\\Users\\Acer\\Documents\\CZ4153 Blockchain Technology\\ethereum-dutch-auction\\node_modules\\@openzeppelin\\contracts\\utils\\Context.sol": {
+      "lastModificationDate": 1697006062714,
+      "contentHash": "bc047f55d4e6dcc5a9c7ee096f530312",
+      "sourceName": "@openzeppelin/contracts/utils/Context.sol",
+      "solcConfig": {
+        "version": "0.8.3",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Context"
+      ]
+    },
+    "C:\\Users\\Acer\\Documents\\CZ4153 Blockchain Technology\\ethereum-dutch-auction\\contracts\\DutchAuction.sol": {
+      "lastModificationDate": 1697385019972,
+      "contentHash": "d47795c93e6ab9de51675b6ca949953a",
+      "sourceName": "contracts/DutchAuction.sol",
+      "solcConfig": {
+        "version": "0.8.3",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/access/Ownable.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "DutchAuction"
+      ]
+    },
+    "C:\\Users\\Acer\\Documents\\CZ4153 Blockchain Technology\\ethereum-dutch-auction\\node_modules\\@openzeppelin\\contracts\\utils\\math\\SafeMath.sol": {
+      "lastModificationDate": 1697006066764,
+      "contentHash": "9f282272a197e5e800ef035117e86f2f",
+      "sourceName": "@openzeppelin/contracts/utils/math/SafeMath.sol",
+      "solcConfig": {
+        "version": "0.8.3",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "SafeMath"
+      ]
+    },
+    "C:\\Users\\Acer\\Documents\\CZ4153 Blockchain Technology\\ethereum-dutch-auction\\node_modules\\@openzeppelin\\contracts\\security\\ReentrancyGuard.sol": {
+      "lastModificationDate": 1697006066656,
+      "contentHash": "1d45ab4bd9b10c657bd26a957be5bcd9",
+      "sourceName": "@openzeppelin/contracts/security/ReentrancyGuard.sol",
+      "solcConfig": {
+        "version": "0.8.3",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ReentrancyGuard"
+      ]
+    },
+    "C:\\Users\\Acer\\Documents\\CZ4153 Blockchain Technology\\ethereum-dutch-auction\\contracts\\NFTMarket.sol": {
+      "lastModificationDate": 1697005758443,
+      "contentHash": "b3feda0ffb0abaf8dbe983e56a7f408c",
+      "sourceName": "contracts/NFTMarket.sol",
       "solcConfig": {
         "version": "0.8.3",
         "settings": {
@@ -29,7 +386,7 @@
       },
       "imports": [
         "@openzeppelin/contracts/utils/Counters.sol",
-        "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol",
+        "@openzeppelin/contracts/security/ReentrancyGuard.sol",
         "@openzeppelin/contracts/token/ERC721/ERC721.sol",
         "hardhat/console.sol"
       ],
@@ -37,11 +394,11 @@
         "^0.8.3"
       ],
       "artifacts": [
-        "NFT"
+        "NFTMarket"
       ]
     },
-    "/Users/admin/src/ethereum-nft-marketplace/node_modules/@openzeppelin/contracts/utils/Counters.sol": {
-      "lastModificationDate": 1696920578921,
+    "C:\\Users\\Acer\\Documents\\CZ4153 Blockchain Technology\\ethereum-dutch-auction\\node_modules\\@openzeppelin\\contracts\\utils\\Counters.sol": {
+      "lastModificationDate": 1697006062748,
       "contentHash": "86ddbfba30a7d811a86f54416c364be3",
       "sourceName": "@openzeppelin/contracts/utils/Counters.sol",
       "solcConfig": {
@@ -74,44 +431,8 @@
         "Counters"
       ]
     },
-    "/Users/admin/src/ethereum-nft-marketplace/node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol": {
-      "lastModificationDate": 1696920580728,
-      "contentHash": "2b16122c5f36625084a7f90f0780937b",
-      "sourceName": "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol",
-      "solcConfig": {
-        "version": "0.8.3",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../ERC721.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "ERC721URIStorage"
-      ]
-    },
-    "/Users/admin/src/ethereum-nft-marketplace/node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol": {
-      "lastModificationDate": 1696920580155,
+    "C:\\Users\\Acer\\Documents\\CZ4153 Blockchain Technology\\ethereum-dutch-auction\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\ERC721.sol": {
+      "lastModificationDate": 1697006064666,
       "contentHash": "8fc7506d6ee32c5fbc527b0c42f0e615",
       "sourceName": "@openzeppelin/contracts/token/ERC721/ERC721.sol",
       "solcConfig": {
@@ -152,8 +473,8 @@
         "ERC721"
       ]
     },
-    "/Users/admin/src/ethereum-nft-marketplace/node_modules/hardhat/console.sol": {
-      "lastModificationDate": 1696920577797,
+    "C:\\Users\\Acer\\Documents\\CZ4153 Blockchain Technology\\ethereum-dutch-auction\\node_modules\\hardhat\\console.sol": {
+      "lastModificationDate": 1697006076522,
       "contentHash": "cc4777addd464ea56fa35b1c45df0591",
       "sourceName": "hardhat/console.sol",
       "solcConfig": {
@@ -186,8 +507,8 @@
         "console"
       ]
     },
-    "/Users/admin/src/ethereum-nft-marketplace/node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol": {
-      "lastModificationDate": 1696920580155,
+    "C:\\Users\\Acer\\Documents\\CZ4153 Blockchain Technology\\ethereum-dutch-auction\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\IERC721.sol": {
+      "lastModificationDate": 1697006066153,
       "contentHash": "93a5aa8a276e028a4f46f22b5d8f7bd3",
       "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721.sol",
       "solcConfig": {
@@ -222,8 +543,8 @@
         "IERC721"
       ]
     },
-    "/Users/admin/src/ethereum-nft-marketplace/node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol": {
-      "lastModificationDate": 1696920580155,
+    "C:\\Users\\Acer\\Documents\\CZ4153 Blockchain Technology\\ethereum-dutch-auction\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\IERC721Receiver.sol": {
+      "lastModificationDate": 1697006066247,
       "contentHash": "e6d69a0b5b95ac1112eb4746a2d66f3e",
       "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
       "solcConfig": {
@@ -256,8 +577,8 @@
         "IERC721Receiver"
       ]
     },
-    "/Users/admin/src/ethereum-nft-marketplace/node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol": {
-      "lastModificationDate": 1696920580729,
+    "C:\\Users\\Acer\\Documents\\CZ4153 Blockchain Technology\\ethereum-dutch-auction\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\extensions\\IERC721Metadata.sol": {
+      "lastModificationDate": 1697006066216,
       "contentHash": "75cedcb24edaec014d2071ed59a03ff3",
       "sourceName": "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol",
       "solcConfig": {
@@ -292,8 +613,8 @@
         "IERC721Metadata"
       ]
     },
-    "/Users/admin/src/ethereum-nft-marketplace/node_modules/@openzeppelin/contracts/utils/Address.sol": {
-      "lastModificationDate": 1696920578920,
+    "C:\\Users\\Acer\\Documents\\CZ4153 Blockchain Technology\\ethereum-dutch-auction\\node_modules\\@openzeppelin\\contracts\\utils\\Address.sol": {
+      "lastModificationDate": 1697006062379,
       "contentHash": "37103cdc416efc2601c6f6734044b559",
       "sourceName": "@openzeppelin/contracts/utils/Address.sol",
       "solcConfig": {
@@ -326,42 +647,8 @@
         "Address"
       ]
     },
-    "/Users/admin/src/ethereum-nft-marketplace/node_modules/@openzeppelin/contracts/utils/Context.sol": {
-      "lastModificationDate": 1696920578921,
-      "contentHash": "bc047f55d4e6dcc5a9c7ee096f530312",
-      "sourceName": "@openzeppelin/contracts/utils/Context.sol",
-      "solcConfig": {
-        "version": "0.8.3",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "Context"
-      ]
-    },
-    "/Users/admin/src/ethereum-nft-marketplace/node_modules/@openzeppelin/contracts/utils/Strings.sol": {
-      "lastModificationDate": 1696920578922,
+    "C:\\Users\\Acer\\Documents\\CZ4153 Blockchain Technology\\ethereum-dutch-auction\\node_modules\\@openzeppelin\\contracts\\utils\\Strings.sol": {
+      "lastModificationDate": 1697006066844,
       "contentHash": "e575d915a7dbf0decd510699a7fd53dc",
       "sourceName": "@openzeppelin/contracts/utils/Strings.sol",
       "solcConfig": {
@@ -394,8 +681,8 @@
         "Strings"
       ]
     },
-    "/Users/admin/src/ethereum-nft-marketplace/node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol": {
-      "lastModificationDate": 1696920580155,
+    "C:\\Users\\Acer\\Documents\\CZ4153 Blockchain Technology\\ethereum-dutch-auction\\node_modules\\@openzeppelin\\contracts\\utils\\introspection\\ERC165.sol": {
+      "lastModificationDate": 1697006063896,
       "contentHash": "a9a5319dff9088c6ffe757ea1c2a6729",
       "sourceName": "@openzeppelin/contracts/utils/introspection/ERC165.sol",
       "solcConfig": {
@@ -430,8 +717,8 @@
         "ERC165"
       ]
     },
-    "/Users/admin/src/ethereum-nft-marketplace/node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol": {
-      "lastModificationDate": 1696920580155,
+    "C:\\Users\\Acer\\Documents\\CZ4153 Blockchain Technology\\ethereum-dutch-auction\\node_modules\\@openzeppelin\\contracts\\utils\\introspection\\IERC165.sol": {
+      "lastModificationDate": 1697006065352,
       "contentHash": "9a04322bb8f6b8f2767d8358d1d2537b",
       "sourceName": "@openzeppelin/contracts/utils/introspection/IERC165.sol",
       "solcConfig": {
@@ -464,10 +751,10 @@
         "IERC165"
       ]
     },
-    "/Users/admin/src/ethereum-nft-marketplace/contracts/NFTMarket.sol": {
-      "lastModificationDate": 1696920178095,
-      "contentHash": "038d4ae53274899e470fe4cdd6a2127f",
-      "sourceName": "contracts/NFTMarket.sol",
+    "C:\\Users\\Acer\\Documents\\CZ4153 Blockchain Technology\\ethereum-dutch-auction\\contracts\\NFT.sol": {
+      "lastModificationDate": 1697005758442,
+      "contentHash": "df6faf4f8f546b023343e8c11578a7ad",
+      "sourceName": "contracts/NFT.sol",
       "solcConfig": {
         "version": "0.8.3",
         "settings": {
@@ -492,7 +779,7 @@
       },
       "imports": [
         "@openzeppelin/contracts/utils/Counters.sol",
-        "@openzeppelin/contracts/security/ReentrancyGuard.sol",
+        "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol",
         "@openzeppelin/contracts/token/ERC721/ERC721.sol",
         "hardhat/console.sol"
       ],
@@ -500,13 +787,13 @@
         "^0.8.3"
       ],
       "artifacts": [
-        "NFTMarket"
+        "NFT"
       ]
     },
-    "/Users/admin/src/ethereum-nft-marketplace/node_modules/@openzeppelin/contracts/security/ReentrancyGuard.sol": {
-      "lastModificationDate": 1696920578917,
-      "contentHash": "1d45ab4bd9b10c657bd26a957be5bcd9",
-      "sourceName": "@openzeppelin/contracts/security/ReentrancyGuard.sol",
+    "C:\\Users\\Acer\\Documents\\CZ4153 Blockchain Technology\\ethereum-dutch-auction\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\extensions\\ERC721URIStorage.sol": {
+      "lastModificationDate": 1697006065010,
+      "contentHash": "2b16122c5f36625084a7f90f0780937b",
+      "sourceName": "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol",
       "solcConfig": {
         "version": "0.8.3",
         "settings": {
@@ -529,12 +816,14 @@
           }
         }
       },
-      "imports": [],
+      "imports": [
+        "../ERC721.sol"
+      ],
       "versionPragmas": [
         "^0.8.0"
       ],
       "artifacts": [
-        "ReentrancyGuard"
+        "ERC721URIStorage"
       ]
     }
   }

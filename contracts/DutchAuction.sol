@@ -1,139 +1,71 @@
-// SPDX-License-Identifier: MIT OR Apache-2.0
-pragma solidity ^0.8.3;
-contract DutchAuction {
-    // Parameters of the auction. Times are either
-    // absolute unix timestamps (seconds since 1970-01-01)
-    // or time periods in seconds.
-    address payable public beneficiary;
-    uint public auctionEndTime;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
-    // Current state of the auction.
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract DutchAuction is Ownable {
+    uint256 public startingPrice;
+    uint256 public reservePrice;
+    uint256 public auctionEndTime;
+    uint256 public initialSupply;
+    uint256 public currentPrice;
+    uint256 public totalTokens;
+    uint256 public tokensSold;
+    bool public auctionClosed;
     address public highestBidder;
-    uint public highestBid;
+    uint256 public highestBid;
 
-    // Allowed withdrawals of previous bids
-    mapping(address => uint) pendingReturns;
+    event BidPlaced(address bidder, uint256 amount);
+    event AuctionClosed(address winner, uint256 amountPaid, uint256 tokensPurchased);
 
-    // Set to true at the end, disallows any change.
-    // By default initialized to `false`.
-    bool ended;
-
-    // Events that will be emitted on changes.
-    event HighestBidIncreased(address bidder, uint amount);
-    event AuctionEnded(address winner, uint amount);
-
-    // Errors that describe failures.
-
-    // The triple-slash comments are so-called natspec
-    // comments. They will be shown when the user
-    // is asked to confirm a transaction or
-    // when an error is displayed.
-
-    /// The auction has already ended.
-    error AuctionAlreadyEnded();
-    /// There is already a higher or equal bid.
-    error BidNotHighEnough(uint highestBid);
-    /// The auction has not ended yet.
-    error AuctionNotYetEnded();
-    /// The function auctionEnd has already been called.
-    error AuctionEndAlreadyCalled();
-
-    /// Create a simple auction with `biddingTime`
-    /// seconds bidding time on behalf of the
-    /// beneficiary address `beneficiaryAddress`.
-    constructor(
-        uint biddingTime,
-        address payable beneficiaryAddress
-    ) {
-        beneficiary = beneficiaryAddress;
-        auctionEndTime = block.timestamp + biddingTime;
+    modifier onlyBeforeAuctionEnd() {
+        require(block.timestamp < auctionEndTime, "Auction has ended");
+        _;
     }
 
-    /// Bid on the auction with the value sent
-    /// together with this transaction.
-    /// The value will only be refunded if the
-    /// auction is not won.
-    function bid() external payable {
-        // No arguments are necessary, all
-        // information is already part of
-        // the transaction. The keyword payable
-        // is required for the function to
-        // be able to receive Ether.
+    constructor() {}
 
-        // Revert the call if the bidding
-        // period is over.
-        if (block.timestamp > auctionEndTime)
-            revert AuctionAlreadyEnded();
+    function startAuction(uint256 _startingPrice, uint256 _reservePrice, uint256 _duration, uint256 _supply) public onlyOwner {
+        startingPrice = _startingPrice;
+        reservePrice = _reservePrice;
+        auctionEndTime = block.timestamp + _duration;
+        initialSupply = _supply;
+        totalTokens = _supply;
+        currentPrice = _startingPrice;
+        auctionClosed = false;
+    }
 
-        // If the bid is not higher, send the
-        // Ether back (the revert statement
-        // will revert all changes in this
-        // function execution including
-        // it having received the Ether).
-        if (msg.value <= highestBid)
-            revert BidNotHighEnough(highestBid);
+    function placeBid() external payable onlyBeforeAuctionEnd {
+        require(!auctionClosed, "Auction has ended");
+        require(msg.value >= currentPrice, "Bid amount must be at least the current price");
 
-        if (highestBid != 0) {
-            // Sending back the Ether by simply using
-            // highestBidder.send(highestBid) is a security risk
-            // because it could execute an untrusted contract.
-            // It is always safer to let the recipients
-            // withdraw their Ether themselves.
-            pendingReturns[highestBidder] += highestBid;
-        }
+        uint256 tokensToPurchase = msg.value / currentPrice;
+        require(tokensToPurchase > 0, "Bid amount is not sufficient to purchase any tokens");
+        require(tokensToPurchase <= totalTokens, "Not enough tokens left for purchase");
+
         highestBidder = msg.sender;
         highestBid = msg.value;
-        emit HighestBidIncreased(msg.sender, msg.value);
-    }
+        tokensSold += tokensToPurchase;
+        totalTokens -= tokensToPurchase;
+        currentPrice = (totalTokens == 0) ? reservePrice : highestBid / totalTokens;
 
-    /// Withdraw a bid that was overbid.
-    function withdraw() external returns (bool) {
-        uint amount = pendingReturns[msg.sender];
-        if (amount > 0) {
-            // It is important to set this to zero because the recipient
-            // can call this function again as part of the receiving call
-            // before `send` returns.
-            pendingReturns[msg.sender] = 0;
+        emit BidPlaced(msg.sender, msg.value);
 
-            // msg.sender is not of type `address payable` and must be
-            // explicitly converted using `payable(msg.sender)` in order
-            // use the member function `send()`.
-            if (!payable(msg.sender).send(amount)) {
-                // No need to call throw here, just reset the amount owing
-                pendingReturns[msg.sender] = amount;
-                return false;
-            }
+        // Check if the auction is now closed
+        if (totalTokens == 0 || block.timestamp >= auctionEndTime || currentPrice == reservePrice) {
+            auctionClosed = true;
+            endAuction();
         }
-        return true;
     }
 
-    /// End the auction and send the highest bid
-    /// to the beneficiary.
-    function auctionEnd() external {
-        // It is a good guideline to structure functions that interact
-        // with other contracts (i.e. they call functions or send Ether)
-        // into three phases:
-        // 1. checking conditions
-        // 2. performing actions (potentially changing conditions)
-        // 3. interacting with other contracts
-        // If these phases are mixed up, the other contract could call
-        // back into the current contract and modify the state or cause
-        // effects (ether payout) to be performed multiple times.
-        // If functions called internally include interaction with external
-        // contracts, they also have to be considered interaction with
-        // external contracts.
+    function endAuction() internal {
+        if (highestBidder != address(0)) {
+            uint256 tokensPurchased = initialSupply - totalTokens;
+            emit AuctionClosed(highestBidder, highestBid, tokensPurchased);
+        }
+    }
 
-        // 1. Conditions
-        if (block.timestamp < auctionEndTime)
-            revert AuctionNotYetEnded();
-        if (ended)
-            revert AuctionEndAlreadyCalled();
-
-        // 2. Effects
-        ended = true;
-        emit AuctionEnded(highestBidder, highestBid);
-
-        // 3. Interaction
-        beneficiary.transfer(highestBid);
+    function isAuctionClosed() public view returns (bool){
+        return auctionClosed;
     }
 }
